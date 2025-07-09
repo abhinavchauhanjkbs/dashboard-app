@@ -1,8 +1,9 @@
-const BASE_URL = 'https://dashboard-backend-7z7f1.onrender.com'; // ✅ Use your backend Render URL
+const BASE_URL = 'https://dashboard-backend-7z7f1.onrender.com'; // ✅ Render backend URL
 
+// Signup API
 export const signup = async (email, password) => {
   try {
-    const res = await fetch(`${BASE_URL}/api/auth/signup`, {
+    const response = await fetch(`${BASE_URL}/api/auth/signup`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -10,16 +11,19 @@ export const signup = async (email, password) => {
       body: JSON.stringify({ email, password }),
     });
 
-    return await res.json();
-  } catch (err) {
-    console.error('Signup API error:', err);
-    return { success: false, message: 'Network error.' };
+    const data = await response.json();
+
+    return data;
+  } catch (error) {
+    console.error('Signup API error:', error);
+    return { success: false, message: 'Unable to connect to the server.' };
   }
 };
 
+// Login API
 export const login = async (email, password) => {
   try {
-    const res = await fetch(`${BASE_URL}/api/auth/login`, {
+    const response = await fetch(`${BASE_URL}/api/auth/login`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -27,9 +31,11 @@ export const login = async (email, password) => {
       body: JSON.stringify({ email, password }),
     });
 
-    return await res.json();
-  } catch (err) {
-    console.error('Login API error:', err);
-    return { success: false, message: 'Network error.' };
+    const data = await response.json();
+
+    return data;
+  } catch (error) {
+    console.error('Login API error:', error);
+    return { success: false, message: 'Unable to connect to the server.' };
   }
 };
