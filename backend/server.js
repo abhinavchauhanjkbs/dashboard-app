@@ -15,6 +15,7 @@ app.use(cors({
   origin: ['http://localhost:3000', 'https://dashboard-frontend-hjvh.onrender.com'],
   credentials: true
 }));
+app.options('*', cors());
 
 // ✅ Security + Parsing Middleware
 app.use(helmet());
