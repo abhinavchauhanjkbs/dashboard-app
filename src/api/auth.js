@@ -1,4 +1,4 @@
-const API_URL = "http://localhost:5000/api/auth";
+const BASE_URL = 'https://dashboard-backend-7z7f1.onrender.com'; // ✅ Correct deployed backend
 
 export const signup = async (email, password) => {
   const res = await fetch(`${API_URL}/signup`, {
