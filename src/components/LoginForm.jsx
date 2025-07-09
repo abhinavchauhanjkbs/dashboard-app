@@ -11,7 +11,7 @@ const LoginForm = ({ onClose, onSwitchToSignup }) => {
     setError('');
 
     try {
-      const response = await login(email, password);
+      const response = await login(email.trim(), password);
 
       if (response.token) {
         alert('Login successful!');
@@ -21,7 +21,7 @@ const LoginForm = ({ onClose, onSwitchToSignup }) => {
       }
     } catch (err) {
       console.error('Login error:', err);
-      setError('User not found. Please sign up first.');
+      setError('Login failed. Please check your credentials or sign up first.');
     }
   };
 

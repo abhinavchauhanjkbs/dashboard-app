@@ -1,18 +1,35 @@
-const express = require('express');
-const router = express.Router();
-const { signup, login } = require('../controllers/authController');
+const BASE_URL = 'https://dashboard-backend-7z7f1.onrender.com'; // ✅ Use your backend Render URL
 
-// @route   POST /api/auth/signup
-// @desc    Register a new user
-router.post('/signup', signup);
+export const signup = async (email, password) => {
+  try {
+    const res = await fetch(`${BASE_URL}/api/auth/signup`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ email, password }),
+    });
 
-// @route   POST /api/auth/login
-// @desc    Authenticate user and return token
-router.post('/login', login);
+    return await res.json();
+  } catch (err) {
+    console.error('Signup API error:', err);
+    return { success: false, message: 'Network error.' };
+  }
+};
 
-// Optional: Simple route to test this router directly
-router.get('/test', (req, res) => {
-  res.send('Auth route working ✅');
-});
+export const login = async (email, password) => {
+  try {
+    const res = await fetch(`${BASE_URL}/api/auth/login`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ email, password }),
+    });
 
-module.exports = router;
+    return await res.json();
+  } catch (err) {
+    console.error('Login API error:', err);
+    return { success: false, message: 'Network error.' };
+  }
+};
