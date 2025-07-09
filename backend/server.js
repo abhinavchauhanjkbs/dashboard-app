@@ -12,8 +12,8 @@ const PORT = process.env.PORT || 5000;
 
 // ✅ CORS configuration
 app.use(cors({
-  origin: ['http://localhost:3000', 'https://dashboard-frontend-hjvh.onrender.com'], // ✅ Your deployed frontend
-  credentials: true // Optional: only needed if using cookies or HTTP auth
+  origin: ['http://localhost:3000', 'https://dashboard-frontend-hjvh.onrender.com'],
+  credentials: true
 }));
 
 // ✅ Security + Parsing Middleware
