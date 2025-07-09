@@ -1,5 +1,5 @@
 const path = require('path');
-require('dotenv').config({ path: path.join(__dirname, '.env') }); // ✅ Load .env safely from backend
+require('dotenv').config({ path: path.join(__dirname, '.env') }); // Load .env safely
 
 const express = require('express');
 const bodyParser = require('body-parser');
@@ -10,15 +10,20 @@ const authRoutes = require('./routes/auth');
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// ✅ Middleware
-app.use(cors());
+// ✅ CORS configuration
+app.use(cors({
+  origin: ['http://localhost:3000', 'https://dashboard-frontend-hjvh.onrender.com'], // ✅ Your deployed frontend
+  credentials: true // Optional: only needed if using cookies or HTTP auth
+}));
+
+// ✅ Security + Parsing Middleware
 app.use(helmet());
 app.use(bodyParser.json());
 
-// ✅ API Routes
+// ✅ Routes
 app.use('/api/auth', authRoutes);
 
-// ✅ Health check route (useful for monitoring)
+// ✅ Health check route
 app.get('/api/health', (req, res) => {
   res.json({ status: 'ok' });
 });
