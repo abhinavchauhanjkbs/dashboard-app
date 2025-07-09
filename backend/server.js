@@ -12,7 +12,7 @@ const PORT = process.env.PORT || 5000;
 
 // ✅ Explicit CORS Options
 const corsOptions = {
-  origin: ['http://localhost:3000', 'https://dashboard-frontend-hjvh.onrender.com'],
+  origin: ['http://localhost:3000', 'https://dashboard-frontend-ksjib.onrender.com'],
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true
