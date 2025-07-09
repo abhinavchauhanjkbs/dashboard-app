@@ -1,5 +1,5 @@
 const path = require('path');
-require('dotenv').config({ path: path.join(__dirname, '.env') }); // Load .env safely
+require('dotenv').config({ path: path.join(__dirname, '.env') });
 
 const express = require('express');
 const bodyParser = require('body-parser');
@@ -10,28 +10,31 @@ const authRoutes = require('./routes/auth');
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// ✅ CORS configuration
+// ✅ Explicit CORS Options
 const corsOptions = {
   origin: ['http://localhost:3000', 'https://dashboard-frontend-hjvh.onrender.com'],
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true
 };
-app.options('*', cors());
 
-// ✅ Security + Parsing Middleware
+// ✅ Enable CORS + Preflight
+app.use(cors(corsOptions));
+app.options('*', cors(corsOptions));
+
+// ✅ Security & Body Parser
 app.use(helmet());
 app.use(bodyParser.json());
 
 // ✅ Routes
 app.use('/api/auth', authRoutes);
 
-// ✅ Health check route
+// ✅ Health Check
 app.get('/api/health', (req, res) => {
   res.json({ status: 'ok' });
 });
 
-// ✅ Start server
+// ✅ Start Server
 app.listen(PORT, () => {
-  console.log(`✅ Server running on http://localhost:${PORT}`);
+  console.log(`✅ Server running on port ${PORT}`);
 });
