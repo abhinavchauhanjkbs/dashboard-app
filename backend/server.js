@@ -11,10 +11,12 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 // ✅ CORS configuration
-app.use(cors({
+const corsOptions = {
   origin: ['http://localhost:3000', 'https://dashboard-frontend-hjvh.onrender.com'],
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true
-}));
+};
 app.options('*', cors());
 
 // ✅ Security + Parsing Middleware
