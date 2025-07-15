@@ -24,7 +24,7 @@ function LoginModal() {
     }
 
     try {
-      const res = await axios.post('http://localhost:5000/auth/login', { email, password });
+      const res = await axios.post('https://dashboard-app-p37p.onrender.com', { email, password });
       if (res.data.token) {
         setMessage('Login successful ✅');
         setSuccess(true);
