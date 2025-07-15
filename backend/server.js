@@ -12,7 +12,7 @@ const PORT = process.env.PORT || 5000;
 
 // ✅ Middleware
 const corsOptions = {
-  origin: ['http://localhost:5173''https://your-frontend-url.onrender.com', ], // Add your frontend origins
+  origin: ['http://localhost:5173' ], // Add your frontend origins
   methods: ['GET', 'POST'],
   credentials: true,
 };
