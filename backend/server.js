@@ -12,7 +12,7 @@ const PORT = process.env.PORT || 5000;
 
 // ✅ Middleware
 const corsOptions = {
-  origin: ['http://localhost:5173'], // Add your frontend origins
+  origin: ['http://localhost:5173''https://your-frontend-url.onrender.com', ], // Add your frontend origins
   methods: ['GET', 'POST'],
   credentials: true,
 };
@@ -24,8 +24,14 @@ app.use(bodyParser.json());
 // ✅ Mount the /auth route
 app.use('/auth', authRoutes);
 
-// ✅ Serve frontend static files (React build)
-app.use(express.static(path.join(__dirname, '../client/dist')));
+// Serve frontend only in production
+if (process.env.NODE_ENV === 'production') {
+  const path = require('path');
+  app.use(express.static(path.join(__dirname, '../client/dist')));
+  app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, '../client', 'dist', 'index.html'));
+  });
+}
 
 // ✅ Catch-all route to serve React frontend for non-API routes
 app.get('*', (req, res) => {
