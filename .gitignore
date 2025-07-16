@@ -1,3 +1,6 @@
+# For backend only
 node_modules/
 /backend/.env
-/client/dist/
+
+# DO NOT ignore dist/ if deploying frontend separately
+# dist/

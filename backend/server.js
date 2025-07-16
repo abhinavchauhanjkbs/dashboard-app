@@ -12,9 +12,10 @@ const PORT = process.env.PORT || 5000;
 
 // ✅ Middleware
 const corsOptions = {
-  origin: ['http://localhost:5173',
-    'https://dashboard-kt4o.onrender.com'
-   ], // Add your frontend origins
+  origin: [
+    'http://localhost:5173',                // Local dev frontend
+    'https://dashboard-kt4o.onrender.com'   // Deployed frontend
+  ],
   methods: ['GET', 'POST'],
   credentials: true,
 };
@@ -23,24 +24,10 @@ app.use(cors(corsOptions));
 app.use(helmet());
 app.use(bodyParser.json());
 
-// ✅ Mount the /auth route
+// ✅ Mount your auth routes
 app.use('/auth', authRoutes);
 
-// Serve frontend only in production
-if (process.env.NODE_ENV === 'production') {
-  const path = require('path');
-  app.use(express.static(path.join(__dirname, '../client/dist')));
-  app.get('*', (req, res) => {
-    res.sendFile(path.resolve(__dirname, '../client', 'dist', 'index.html'));
-  });
-}
-
-// ✅ Catch-all route to serve React frontend for non-API routes
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../client/dist/index.html'));
-});
-
-// ✅ Health check route (useful for monitoring)
+// ✅ Health check endpoint (optional but useful)
 app.get('/api/health', (req, res) => {
   res.json({ status: 'ok' });
 });
