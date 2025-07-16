@@ -24,7 +24,7 @@ function LoginModal() {
     }
 
     try {
-      const res = await axios.post('https://dashboard-app-p37p.onrender.com', { email, password });
+      const res = await axios.post(`${import.meta.env.VITE_API_URL}/auth/signup`, { email, password });
       if (res.data.token) {
         setMessage('Login successful ✅');
         setSuccess(true);
