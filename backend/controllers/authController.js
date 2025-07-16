@@ -39,6 +39,9 @@ const signup = async (req, res) => {
 };
 
 const login = (req, res) => {
+  // ✅ Log the incoming request body for debugging
+  console.log("📥 Received login data:", req.body);
+
   const { email, password } = req.body;
 
   if (!email || !password) {
