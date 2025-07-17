@@ -27,7 +27,7 @@ function LoginModal() {
   console.log("Sending login request with:", { email, password });
   
     try {
-      const res = await axios.post(`${import.meta.env.VITE_API_URL}/auth/signup`, { email, password });
+      const res = await axios.post(`${import.meta.env.VITE_API_URL}/auth/login`, { email, password });
       if (res.data.token) {
         setMessage('Login successful ✅');
         setSuccess(true);
