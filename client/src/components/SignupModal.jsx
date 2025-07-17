@@ -23,7 +23,10 @@ function SignupModal() {
       return;
     }
 
-    try {
+    // ✅ Log VITE_API_URL to check if it's working
+  console.log(import.meta.env.VITE_API_URL); // Should log backend URL
+    
+  try {
         const res = await axios.post(`${import.meta.env.VITE_API_URL}/auth/signup`, {
         email,
         password,
