@@ -24,8 +24,8 @@ function LoginModal() {
     }
 
     // ✅ Log the credentials you're about to send
-  console.log("Sending login request with:", { email, password });
-  
+    console.log("Sending login request with:", { email, password });
+
     try {
       const res = await axios.post(`${import.meta.env.VITE_API_URL}/auth/login`, { email, password });
       if (res.data.token) {
@@ -39,7 +39,7 @@ function LoginModal() {
           setSuccess(false);
         }, 1000);
       }
-    } catch (err) {
+    } catch {
       setMessage('Login failed ❌');
       setSuccess(false);
     }
