@@ -43,7 +43,7 @@ const RecentActivity = () => {
     <div className="bg-white rounded-xl shadow-md p-4 mt-6 w-full">
       <h2 className="text-xl font-semibold mb-4">Recent Activity</h2>
       <div className="overflow-x-auto">
-        <table className="min-w-full text-left text-sm">
+        <table className="min-w-full text-left text-sm text-sm text gray-800">
           <thead className="bg-gray-100">
             <tr>
               <th className="p-3">Vehicle</th>
@@ -56,11 +56,11 @@ const RecentActivity = () => {
           <tbody>
             {activityData.map((item, index) => (
               <tr key={index} className="border-t">
-                <td className="p-3">{item.vehicle}</td>
-                <td className="p-3">{item.driver}</td>
-                <td className="p-3">{item.trip}</td>
-                <td className="p-3">{item.tripStatus}</td>
-                <td className="p-3">{item.generalStatus}</td>
+                <td className="p-3 text-gray-800">{item.vehicle}</td>
+                <td className="p-3 text-gray-800">{item.driver}</td>
+                <td className="p-3 text-gray-800">{item.trip}</td>
+                <td className="p-3 text-gray-800">{item.tripStatus}</td>
+                <td className="p-3 text-gray-800">{item.generalStatus}</td>
               </tr>
             ))}
           </tbody>
